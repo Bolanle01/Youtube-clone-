@@ -26,18 +26,24 @@ import megan from '../../assets/megan.png';
 import simon from '../../assets/simon.png';
 import { Link } from 'react-router-dom';
 
-const Side = () => {
+const Side = ({ category, setCategory }) => {
 
   return (
 
-    <div className='text-md overflow-auto ml-5 w-55 -mt-5 bg-white sm:hidden md:block'>
+    <div className='text-md fixed left-0 top-14 h-[calc(100vh-56px)] overflow-y-auto ml-7 w-60 bg-white hidden md:block'>
 
       <div className='mb-4'>
-        <span className='flex cursor-pointer gap-5 mb-4 mt-3'><img src={home} alt="home" /> <span className='mt-3'>Home</span></span>
-        <span className='flex cursor-pointer gap-5 mb-4 mt-3'><img src={shorts} alt="shorts" /> 
-        <span className='mt-3'>Shorts</span>
-          </span>
-        <span className='flex cursor-pointer gap-5 mb-4 mt-3'><img src={Subscription} alt="" /> Subsriptions</span>
+        <span onClick={() => setCategory(0)} className={`side_link flex cursor-pointer hover:bg-gray-200 h-10 rounded-2xl items-center gap-5 mb-4 mt-3 ${category === 0 ? "active" : ""}`}>
+          <img src={home} alt="home" /> 
+          <span className='mt-3'>Home</span>
+        </span>
+        <Link onClick={() => setCategory(18)} className={`flex hover:bg-gray-200 h-10 rounded-2xl items-center cursor-pointer gap-5 mb-4 mt-3 ${category === 1 ? "active" : ""}`}>
+          <img src={shorts} alt="shorts" /> 
+          <span className=''>Shorts</span>
+        </Link>
+        <span className='flex cursor-pointer hover:bg-gray-200 h-10 rounded-2xl items-center gap-5 mb-4 mt-3'>
+          <img src={Subscription} alt="" /> Subsriptions
+        </span>
       </div><hr className='text-gray-200' />
 
       <div className='mb-4 mt-3'>
@@ -52,7 +58,7 @@ const Side = () => {
             Playlist
           </span>
         </span>
-        <span className='flex mb-4 mt-3 cursor-pointer hover:bg-gray-200 h-10 rounded-2xl items-center px-2 gap-5'><img src={courses} alt="history" />
+        <span onClick={() => setCategory(27)} className='flex mb-4 mt-3 cursor-pointer hover:bg-gray-200 h-10 rounded-2xl items-center px-2 gap-5'><img src={courses} alt="history" />
           Your courses
         </span>
         <span className='flex mb-4 mt-3 hover:bg-gray-200 h-10 rounded-2xl items-center px-2 cursor-pointer gap-5'><img src={watch_later} alt="history" />
@@ -67,7 +73,7 @@ const Side = () => {
       </div><hr className='text-gray-200' />
 
       <div className='mb-4 mt-3'>
-        <h2 className='font-bold text-lg mb-5'>Subscriptions</h2>
+        <h2 onClick={() => setCategory(17)} className='font-bold text-lg mb-5'>Subscriptions</h2>
         <span className='flex mb-4 cursor-pointer gap-6 hover:bg-gray-200 h-10 rounded-2xl items-center px-2'>
           <img className='w-8 h-8 rounded-full' src={cameron} alt="cameron" /> Cameron
         </span>
@@ -87,10 +93,18 @@ const Side = () => {
 
       <div className='text-sm mb-4'>
         <h2 className='font-bold text-lg mb-4 mt-3'>Explore</h2>
-        <span className='flex mb-4 mt-3 cursor-pointer gap-5'><img src={music} alt="music" /> Music</span>
-        <span className='flex mb-4 mt-3 cursor-pointer gap-5'><img src={gaming} alt="gaming" /> Gaming</span>
-        <span className='flex mb-4 mt-3 cursor-pointer gap-5'><img src={news} alt="news" /> News</span>
-        <span className='flex mb-4 mt-3 cursor-pointer gap-5'><img src={sports} alt="sports" /> Sport</span>
+        <span onClick={() => setCategory(10)} className='flex mb-4 mt-3 cursor-pointer gap-5'><img src={music} alt="music" />
+         Music
+        </span>
+        <span onClick={() => setCategory(20)} className='flex mb-4 mt-3 cursor-pointer gap-5'><img src={gaming} alt="gaming" />
+         Gaming
+        </span>
+        <span onClick={() => setCategory(25)} className='flex mb-4 mt-3 cursor-pointer gap-5'><img src={news} alt="news" />
+         News
+        </span>
+        <span onClick={() => setCategory(17)} className='flex mb-4 mt-3 cursor-pointer gap-5'><img src={sports} alt="sports" />
+         Sport
+        </span>
       </div><hr className='text-gray-200' />
 
       <div className='mb-4'>

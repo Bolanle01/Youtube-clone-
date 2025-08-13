@@ -1,14 +1,11 @@
 import React from 'react'
 
-const Recommended = () => {
-
+const PlayList = () => {
   return (
-
     <div>
       
     </div>
-    
   )
 }
 
-export default Recommended
+export default PlayList

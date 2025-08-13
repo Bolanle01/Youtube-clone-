@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Sidebar from '../../Component/Sidebar/Sidebar.jsx'
 import Feed from '../../Component/Feed/Feed.jsx'
 import Video from '../../Component/PlayVideo/Video.jsx'
+import Pageheader from '../../Component/Pageheader/Pageheader.jsx'
 
 const Home = ({sidebar}) => {
+
+  const [category, setCategory] = useState("All");
+
 
   {/*const videos = new Array(12).fill({
     title: 'Sample Video Title',
@@ -14,11 +18,16 @@ const Home = ({sidebar}) => {
 
   return (
 
-    <div className='flex'>
-      <Sidebar sidebar={sidebar} />
+    <div className='flex-row'>
 
-      <div className={`container ${sidebar ? "" : 'large-container'}`}>
-        <Feed />
+      <Pageheader selectedCategory={category} setSelectedCategory={setCategory} />
+
+     <div className='w=1/5'>
+      {(sidebar || window.innerWidth >= 1024) && <Sidebar />}
+     </div>
+
+      <div className={`container ${sidebar ? "" : 'large-container'} 'w=4/5'`}>
+        <Feed selectedCategory={category} />
       </div>
 
       {/*

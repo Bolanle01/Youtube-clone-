@@ -1,36 +1,53 @@
-import React from 'react'
-import { useState } from 'react';
-
+import React, { useRef} from 'react';
 
 const categories = [
-    'All',
-    'Chinese television dramas',
-    'Music',
-    'Nollywood',
-    'Martial Arts Movies',
-    'JavaScript',
-    'Live',
-    'Mixes',
-    'Daughters',
-    'Romantic comedies',
-    'Skills',
-    'Computer files',
-    'Thrillers'
+  'All',
+  'Chinese television dramas',
+  'Music',
+  'Nollywood',
+  'Martial Arts Movies',
+  'JavaScript',
+  'Live',
+  'Mixes',
+  'Daughters',
+  'Romantic comedies',
+  'Skills',
+  'Computer files',
+  'Thrillers',
 ];
 
-const Pageheader = () => {
-  const [active, setActive] = useState('All');
+const Pageheader = ({selectedCategory, setSelectedCategory}) => {
+  const scrollRef = useRef(null);
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({
+        left: direction === 'left' ? -200 : 200,
+        behavior: 'smooth',
+      });
+    }
+  };
 
   return (
-    <div className="mb-20 ml-70 px-4 py-2  sticky top-16 z-50  grid grid-cols-[repeat(autofill, minmax(300px,1fr))] position-relative items-center overflow-x-auto whitespace-nowrap dark:bg-zinc-900">
-      <div className="flex gap-4">
+    <div className="flex items-center bg-white sticky top-14 z-50 px-2 md:ml-56">
+      <button
+        onClick={() => scroll('left')}
+        className="px-2 py-1 text-xl font-bold rounded hover:bg-gray-200"
+      >
+        ‹
+      </button>
+
+      <div
+        ref={scrollRef}
+        className="flex gap-3 overflow-x-auto scrollbar-hide py-2 mx-2"
+      >
         {categories.map((category) => (
           <button
             key={category}
-            onClick={() => setActive(category)}
-            className={`px-4 py-1 rounded-lg text-sm ${
-              active === category
-                ? 'bg-black text-white'
+            onClick={() => setSelectedCategory(category)}
+            className={`px-4 py-1 whitespace-nowrap rounded-lg text-sm ${
+              selectedCategory === category ?
+               'bg-black text-white'
                 : 'bg-gray-200 text-black dark:bg-zinc-700 dark:text-white hover:bg-gray-300'
             }`}
           >
@@ -38,9 +55,17 @@ const Pageheader = () => {
           </button>
         ))}
       </div>
+
+      <button
+        onClick={() => scroll('right')}
+        className="px-2 py-1 text-xl font-bold rounded hover:bg-gray-200"
+      >
+        ›
+      </button>
     </div>
   );
 };
+
 export default Pageheader;
 
 /*export default CategoryBar;*/
